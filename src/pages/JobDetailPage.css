@@ -1,0 +1,55 @@
+/* src/pages/JobDetailPage.css */
+
+.job-detail-container {
+  margin: 20px;
+}
+
+.error-message {
+  color: red;
+}
+
+.job-detail {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.company {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.location {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.type {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.created-at {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.description {
+  margin-bottom: 15px;
+}
+
+.company-logo {
+  max-width: 200px;
+}

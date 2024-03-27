@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
+import axios from 'axios';
 import './JobListPage.css'; // Import the CSS file
 
 function JobListPage() {
@@ -90,7 +91,9 @@ function JobListPage() {
         {filteredJobs.map((job, idx) => (
           job && (
             <div key={idx} className="job-item">
-              <h3>{job.title}</h3>
+              <h3>
+                <Link to={`/jobs/${job.id}`} className="job-title">{job.title}</Link>
+              </h3>
               <p>{job.location}</p>
               <p>{job.fullTime ? 'Full Time' : 'Part Time'}</p>
             </div>
