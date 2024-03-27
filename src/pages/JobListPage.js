@@ -17,13 +17,8 @@ function JobListPage() {
         const response = await axios.get(
           'http://localhost:3000/api/jobs',
           {
-            params: {
-              description: searchTerm,
-              location: location,
-              full_time: fullTimeOnly ? 'true' : '' // Convert boolean to string 'true' or ''
-            },
             headers: {
-              Authorization: `${token}` // Fixed the token format
+              Authorization: `${token}` // Use token without Bearer prefix
             }
           }
         );
@@ -35,21 +30,15 @@ function JobListPage() {
     }
 
     fetchJobs();
-  }, [searchTerm, location, fullTimeOnly]); // Fetch jobs when search parameters change
-
-  const handleLoadMoreJobs = () => {
-    // Implement logic to load more jobs if needed
-  };
+  }, []); // Fetch jobs only once when component mounts
 
   const handleSearch = () => {
     // Perform filtering based on search criteria
-    const filtered = jobs.filter(job => {
-      return (
-        job.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        job.location.toLowerCase().includes(location.toLowerCase()) &&
-        (!fullTimeOnly || job.fullTime)
-      );
-    });
+    const filtered = jobs.filter(job => (
+      job.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      job.location.toLowerCase().includes(location.toLowerCase()) &&
+      (!fullTimeOnly || job.fullTime)
+    ));
     // Update filteredJobs with the filtered result
     setFilteredJobs(filtered);
   };
@@ -89,9 +78,6 @@ function JobListPage() {
           </div>
         ))}
       </div>
-      <button className="more-jobs-btn" onClick={handleLoadMoreJobs}>
-        More Jobs
-      </button>
     </div>
   );
 }
