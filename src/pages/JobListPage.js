@@ -1,19 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import './JobListPage.css'; // Import the CSS file
 
 function JobListPage() {
-  // Placeholder job data
-  const [jobs, setJobs] = useState([
-    { id: 1, title: 'Software Engineer', location: 'New York', fullTime: true },
-    { id: 2, title: 'Web Developer', location: 'San Francisco', fullTime: false },
-    { id: 3, title: 'Data Scientist', location: 'Seattle', fullTime: true },
-    // Add more job data as needed
-  ]);
-
+  const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [location, setLocation] = useState('');
   const [fullTimeOnly, setFullTimeOnly] = useState(false);
-  const [filteredJobs, setFilteredJobs] = useState(jobs); // Initialize filteredJobs with all jobs
+  const [filteredJobs, setFilteredJobs] = useState([]);
+
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(
+          'http://localhost:3000/api/jobs',
+          {
+            params: {
+              description: searchTerm,
+              location: location,
+              full_time: fullTimeOnly ? 'true' : '' // Convert boolean to string 'true' or ''
+            },
+            headers: {
+              Authorization: `${token}` // Fixed the token format
+            }
+          }
+        );
+        setJobs(response.data);
+        setFilteredJobs(response.data); // Set filteredJobs initially with all jobs
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      }
+    }
+
+    fetchJobs();
+  }, [searchTerm, location, fullTimeOnly]); // Fetch jobs when search parameters change
 
   const handleLoadMoreJobs = () => {
     // Implement logic to load more jobs if needed
