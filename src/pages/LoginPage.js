@@ -1,6 +1,8 @@
 // src/pages/LoginPage.js
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from React Router
+
 import axios from 'axios';
 import './LoginPage.css'; // Import the CSS file
 
@@ -43,6 +45,9 @@ function LoginPage() {
                 {error && <div className="alert alert-danger" role="alert">{error}</div>}
                 <div className="d-grid">
                   <button type="submit" className="btn btn-primary btn-block">Login</button>
+                </div>
+                <div className="text-center mt-3">
+                  <Link to="/register">Dont have an account? Register here</Link>
                 </div>
               </form>
             </div>
