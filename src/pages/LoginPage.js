@@ -17,6 +17,8 @@ function LoginPage() {
         password
       });
       localStorage.setItem('token', response.data.token);
+      // Redirect to Job List page
+      window.location.href = '/jobs';
     } catch (error) {
       setError('Invalid username or password'); // Handle login error
     }

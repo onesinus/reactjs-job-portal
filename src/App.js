@@ -3,7 +3,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// import ProtectedRoute from './ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import JobListPage from './pages/JobListPage';
 import JobDetailPage from './pages/JobDetailPage';
@@ -13,7 +12,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        {/* <ProtectedRoute path="/jobs" element={<JobListPage />} /> */}
         <Route path="/jobs" element={<JobListPage />} />
         <Route path="/jobs/:id" element={<JobDetailPage />} />
       </Routes>
